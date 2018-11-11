@@ -1,5 +1,5 @@
 void increment(){
-  if(9 == HIGH && 7 == HIGH){
+  if(getHour() == 59){
     incrementHour();
   }
   else{
@@ -8,7 +8,7 @@ void increment(){
 }
 
 void incrementMin(){
-  
+
 }
 
 void incrementHour(){
@@ -25,7 +25,7 @@ int getHour(){
   }
   for(int i = 3; i < 6; i++){
     if(i == HIGH){
-      hour += i * pow(2^count);
+      hour += i * pow(2, count);
     }
     count++;
   }
@@ -35,7 +35,13 @@ int getMin(){
   int minute = 0;
   int count = 0;
   for(int i = 7; i < 9; i++){
-    minute += i * pow(2*count) * 10;
+    minute += i * pow(2, count) * 10;
+	 count++;
+  }
+  count = 0;
+  for(int i = 10; i < 13; i++){
+	minute += i * pow(2, count);
+	count++;
   }
 }
 
