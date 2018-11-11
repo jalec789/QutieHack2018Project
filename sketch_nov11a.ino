@@ -1,80 +1,55 @@
-void reset(){
-	for(int i = 1; i < 13; i++){
-		digitalWrite(i, LOW);
-	}
-}
-
-void increment(){
-  if(getMin() == 59){
-    incrementHour();
-  }
-  else if(getHour() == 23 && getMin() == 59){
-	 reset();
-  }
-  else{
-	 incrementMin();
-  }
-}
-
-void incrementMin(){
-	int highest = 0;
-	for(int i = 10; i < 13; i++){
-		if(i == HIGH){
-			highest = i;	
-		}
-	}
-	for(int i = highest; i > 10; i++){
-		if(i == LOW){
-
-		}
-	}
-}
-
-void incrementHour(){
-  
-}
-
-int getHour(){
-  int hour = 0;
-  int count = 0;
-  for(int i = 1; i < 2; i++){
-    if(i == HIGH){
-      hour += i*10
-    }
-  }
-  for(int i = 3; i < 6; i++){
-    if(i == HIGH){
-      hour += i * pow(2, count);
-    }
-    count++;
-  }
-}
-
-int getMin(){
-  int minute = 0;
-  int count = 0;
-  for(int i = 7; i < 9; i++){
-    minute += i * pow(2, count) * 10;
-	 count++;
-  }
-  count = 0;
-  for(int i = 10; i < 13; i++){
-	minute += i * pow(2, count);
-	count++;
-  }
-}
-
 void setup() {
-  // put your setup code here, to run once:
-  pinMode(8, OUTPUT);
-  bool mins = false;
-  bool hours = false;
+  //set outputs 
+  for(int k=1;k<=13;k++) {
+    pinMode(k, OUTPUT);
+  }
+  //set inputs
+  pinMode(14, INPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  //Initial State  
+
+int minOnes=0;
+int minTens=1;
+int hrOnes=0;
+int hrTens=0;
+
+bool runTime(int maxCount, int beginLed, int endLed, int& place) {
+  int temp = place;
+  int remainder;
   
-  delay(60000);
-  increment();
+  place += 1;
+  if(place == maxCount+1) {
+    place = 0;
+  }
+  
+  //loops through lights, determines number
+  for(int i = beginLed; i <= endLed; i++){
+    remainder = temp % 2;
+    temp = temp / 2;
+    if(remainder == 1) {
+      digitalWrite(i, HIGH);
+    }
+    else if(remainder == 0) {
+      digitalWrite(i, LOW);
+    }
+  }
+
+  if(place == 0){
+    return true;
+  }
+  return false;
+  
+}
+
+
+//Test all lights
+void loop() {
+  delay(500);
+  if(runTime(10, 1, 4, minOnes)){
+    runTime(10, 1, 4, minOnes);
+    if(runTime(5, 5, 7, minTens)){
+
+
+    }
+  } 
 }
