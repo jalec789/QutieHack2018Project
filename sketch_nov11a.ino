@@ -1,14 +1,33 @@
+void reset(){
+	for(int i = 1; i < 13; i++){
+		digitalWrite(i, LOW);
+	}
+}
+
 void increment(){
-  if(getHour() == 59){
+  if(getMin() == 59){
     incrementHour();
   }
+  else if(getHour() == 23 && getMin() == 59){
+	 reset();
+  }
   else{
-    incrementMin();
+	 incrementMin();
   }
 }
 
 void incrementMin(){
+	int highest = 0;
+	for(int i = 10; i < 13; i++){
+		if(i == HIGH){
+			highest = i;	
+		}
+	}
+	for(int i = highest; i > 10; i++){
+		if(i == LOW){
 
+		}
+	}
 }
 
 void incrementHour(){
