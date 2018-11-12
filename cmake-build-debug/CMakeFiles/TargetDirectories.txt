@@ -1,3 +1,0 @@
-/home/jason/Documents/UCR/CutieHack2018/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jason/Documents/UCR/CutieHack2018/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jason/Documents/UCR/CutieHack2018/cmake-build-debug/CMakeFiles/CutieHack2018.dir
